@@ -1,3 +1,7 @@
+
+import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
+
 function injectStyles() {
     const style = document.createElement('style');
     style.textContent = `
@@ -5,7 +9,7 @@ function injectStyles() {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            max-width: 400px;
+            width: 400px;
             height: 600px;
             background-color: #fff;
             border: 1px solid #ccc;
@@ -46,6 +50,7 @@ function injectStyles() {
             padding: 8px;
             border-radius: 5px;
             border: 1px solid #ccc;
+            width: 100%;
         }
   
         .chatbox-send, .chatbox-minimized {
@@ -102,7 +107,7 @@ function injectStyles() {
 }
 
 function createChatbox() {
-    const uuid = uuid4();  // Using uuid4 library
+    const uuid = uuidv4();  // Using uuid4 library
 
     const chatbox = document.createElement('div');
     chatbox.className = 'chatbox';
@@ -185,7 +190,7 @@ function createChatbox() {
             try {
                 let response = await axios.post(endpoint_url,
                     {
-                        question: message,
+                        message: message,
                         session_uuid: uuid,
                         company_uuid: company_uuid,
                     },
