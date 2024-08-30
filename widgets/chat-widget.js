@@ -18,6 +18,7 @@ function injectStyles() {
             z-index: 1000;
             display: flex;
             flex-direction: column;
+            
         }
   
         .chatbox-header {
@@ -31,7 +32,8 @@ function injectStyles() {
         }
   
         .chatbox-body {
-  
+        margin-bottom: auto;
+        height: 100%;
         overflow-y: scroll;
         overflow-x: hidden; 
             padding: 10px;
@@ -39,7 +41,6 @@ function injectStyles() {
         }
   
         .chatbox-form {
-            margin-top: auto;
             display: flex;
             gap: 10px;
             padding: 10px;
@@ -145,19 +146,17 @@ function createChatbox() {
     document.body.appendChild(chatboxToggle);
     chatboxBody.style.display = 'block'
 
-    chatboxHeader.addEventListener('click', () => {
-        chatboxBody.style.display = chatboxBody.style.display === 'block' ? 'none' : 'block';
-    });
-
     document.getElementById('chatbox-close').addEventListener('click', () => {
         chatbox.style.display = 'none';
         chatboxToggle.style.display = 'block';
+        chatboxBody.scrollTop = chatboxBody.scrollHeight;
     });
 
     chatboxToggle.addEventListener('click', () => {
-        chatbox.style.display = 'block';
+        chatbox.style.display = 'flex';
         chatboxBody.style.display = 'block'
         chatboxToggle.style.display = 'none';
+        chatboxBody.scrollTop = chatboxBody.scrollHeight;
     });
 
 
